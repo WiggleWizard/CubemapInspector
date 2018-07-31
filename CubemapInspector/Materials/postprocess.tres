@@ -1,0 +1,13 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+
+render_priority = 0
+
+[resource]
+
+render_priority = 0
+next_pass = SubResource( 1 )
+blend_mode = 0
+light_mode = 0
+

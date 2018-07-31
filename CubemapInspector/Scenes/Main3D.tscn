@@ -1,0 +1,235 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scripts/Cubemap.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
+[ext_resource path="res://Shaders/unshaded.shader" type="Shader" id=3]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_dn.tga" type="Texture" id=4]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_up.tga" type="Texture" id=5]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_rt.tga" type="Texture" id=6]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_lf.tga" type="Texture" id=7]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_ft.tga" type="Texture" id=8]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_bk.tga" type="Texture" id=9]
+[ext_resource path="res://Scripts/CubemapSideButtons.gd" type="Script" id=10]
+
+[sub_resource type="Shader" id=1]
+
+code = "shader_type spatial;
+render_mode unshaded;
+
+void fragment()
+{
+	ALBEDO.rgb = vec3(1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 0
+shader = SubResource( 1 )
+_sections_unfolded = [ "shader" ]
+
+[sub_resource type="ShaderMaterial" id=3]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/tex = ExtResource( 4 )
+_sections_unfolded = [ "Shader Param", "shader_param" ]
+
+[sub_resource type="PlaneMesh" id=4]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+size = Vector2( 2, 2 )
+subdivide_width = 0
+subdivide_depth = 0
+
+[sub_resource type="ShaderMaterial" id=5]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/tex = ExtResource( 5 )
+_sections_unfolded = [ "Shader Param", "shader", "shader_param", "shader_param/tex" ]
+
+[sub_resource type="ShaderMaterial" id=6]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/tex = ExtResource( 6 )
+_sections_unfolded = [ "Shader Param", "shader_param" ]
+
+[sub_resource type="ShaderMaterial" id=7]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/tex = ExtResource( 7 )
+_sections_unfolded = [ "Shader Param" ]
+
+[sub_resource type="ShaderMaterial" id=8]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/tex = ExtResource( 8 )
+_sections_unfolded = [ "Shader Param", "shader_param" ]
+
+[sub_resource type="ShaderMaterial" id=9]
+
+render_priority = 0
+shader = ExtResource( 3 )
+shader_param/tex = ExtResource( 9 )
+_sections_unfolded = [ "Shader Param", "shader_param" ]
+
+[node name="Root" type="Spatial"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Script", "script" ]
+bound_scale = 0.99
+
+[node name="Bounds" type="ImmediateGeometry" parent="." index="0"]
+
+layers = 1
+material_override = SubResource( 2 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="Camera" type="Camera" parent="." index="1"]
+
+transform = Transform( -1, 0, -1.50996e-007, 0, 1, 0, 1.50996e-007, 0, -1, 0, 0, 0 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = true
+fov = 100.0
+size = 1.0
+near = 0.05
+far = 100.0
+script = ExtResource( 2 )
+_sections_unfolded = [ "Script", "Transform", "script" ]
+camera_speed = 5.0
+fov_scroll_speed = 5
+
+[node name="FakeCubemap" type="Spatial" parent="." index="2"]
+
+_sections_unfolded = [ "Script", "Transform" ]
+
+[node name="Down" type="MeshInstance" parent="FakeCubemap" index="0"]
+
+transform = Transform( 1.74846e-007, -1.52855e-014, -4, -3.49691e-007, -4, 0, -4, 3.49691e-007, -1.74846e-007, 0, -4, 0 )
+layers = 1
+material_override = SubResource( 3 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="Up" type="MeshInstance" parent="FakeCubemap" index="1"]
+
+transform = Transform( -1.74846e-007, 0, 4, 0, 4, 0, -4, 0, -1.74846e-007, -1.20797e-006, 4, 0 )
+layers = 1
+material_override = SubResource( 5 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="Right" type="MeshInstance" parent="FakeCubemap" index="2"]
+
+transform = Transform( -1.74846e-007, -4, -1.74846e-007, 0, -1.74846e-007, 4, -4, 1.74846e-007, 7.64274e-015, -4, 2.06632e-007, 0 )
+layers = 1
+material_override = SubResource( 6 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="Left" type="MeshInstance" parent="FakeCubemap" index="3"]
+
+transform = Transform( -1.74846e-007, 4, 1.74846e-007, 0, -1.74846e-007, 4, 4, 1.74846e-007, 7.64274e-015, 4, 2.06632e-007, 0 )
+layers = 1
+material_override = SubResource( 7 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="Front" type="MeshInstance" parent="FakeCubemap" index="4"]
+
+transform = Transform( -4, 6.03983e-007, 2.64009e-014, 0, -1.74846e-007, 4, 6.03983e-007, 4, 1.74846e-007, 7.15256e-007, 2.06632e-007, 4 )
+layers = 1
+material_override = SubResource( 8 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="Back" type="MeshInstance" parent="FakeCubemap" index="5"]
+
+transform = Transform( 4, -6.99382e-007, -3.0571e-014, 0, -1.74846e-007, 4, -6.99382e-007, -4, -1.74846e-007, -5.8811e-007, -3.97351e-007, -4 )
+layers = 1
+material_override = SubResource( 9 )
+cast_shadow = 0
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
+
+[node name="CubemapSideButtons" type="Spatial" parent="FakeCubemap" index="6"]
+
+script = ExtResource( 10 )
+_sections_unfolded = [ "Visibility" ]
+
+[connection signal="cubemap_side_button_clicked" from="Camera" to="." method="_on_cubemap_side_button_clicked"]
+
+[connection signal="enabled_camera_rotation" from="Camera" to="." method="_on_enabled_camera_rotation"]
+
+[connection signal="fov_changed" from="Camera" to="." method="_on_fov_changed"]
+
+

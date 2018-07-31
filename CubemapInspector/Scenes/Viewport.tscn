@@ -1,0 +1,399 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/MainUI.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Main3D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fonts/StatusBar.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scripts/GetFPS.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/CubemapSidePaths.gd" type="Script" id=5]
+
+[sub_resource type="InputEventKey" id=1]
+
+device = 0
+alt = false
+shift = false
+control = false
+meta = false
+command = false
+pressed = false
+scancode = 66
+unicode = 0
+echo = false
+
+[sub_resource type="ShortCut" id=2]
+
+shortcut = SubResource( 1 )
+
+[sub_resource type="InputEventKey" id=3]
+
+device = 0
+alt = false
+shift = false
+control = false
+meta = false
+command = false
+pressed = false
+scancode = 76
+unicode = 0
+echo = false
+
+[sub_resource type="ShortCut" id=4]
+
+shortcut = SubResource( 3 )
+
+[node name="Control" type="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Script" ]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="." index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+stretch = true
+stretch_shrink = 1
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer" index="0"]
+
+arvr = false
+size = Vector2( 1024, 600 )
+own_world = false
+world = null
+transparent_bg = false
+msaa = 0
+hdr = true
+disable_3d = false
+usage = 2
+debug_draw = 0
+render_target_v_flip = false
+render_target_clear_mode = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = false
+audio_listener_enable_3d = false
+physics_object_picking = false
+gui_disable_input = false
+gui_snap_controls_to_pixels = true
+shadow_atlas_size = 0
+shadow_atlas_quad_0 = 2
+shadow_atlas_quad_1 = 2
+shadow_atlas_quad_2 = 3
+shadow_atlas_quad_3 = 4
+
+[node name="Scene" parent="ViewportContainer/Viewport" index="0" instance=ExtResource( 2 )]
+
+[node name="UI" type="Control" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI" index="0"]
+
+visible = false
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -70.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.298039 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="FileDialog" type="FileDialog" parent="UI" index="1"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 134.0
+margin_top = 73.0
+margin_right = 898.0
+margin_bottom = 514.0
+rect_min_size = Vector2( 200, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Load a cubemap"
+resizable = true
+dialog_hide_on_ok = false
+mode_overrides_title = false
+mode = 0
+access = 2
+filters = PoolStringArray(  )
+show_hidden_files = false
+current_dir = "C:/Projects/CubemapInspector/CubemapInspector"
+current_file = ""
+current_path = "C:/Projects/CubemapInspector/CubemapInspector/"
+_sections_unfolded = [ "Dialog", "Script", "filters" ]
+
+[node name="StatusBar" type="ColorRect" parent="UI" index="2"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="FoV" type="Label" parent="UI/StatusBar" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 2.0
+margin_right = 57.0
+margin_bottom = 17.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+text = "FoV: 90"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Custom Fonts", "custom_fonts/font" ]
+
+[node name="Separator" type="ColorRect" parent="UI/StatusBar" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 73.0
+margin_right = 74.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.176471, 0.176471, 0.176471, 1 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="ShowBounds" type="CheckBox" parent="UI/StatusBar" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = 77.0
+margin_top = -12.0
+margin_right = 210.0
+margin_bottom = 12.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+enabled_focus_mode = 0
+shortcut = SubResource( 2 )
+group = null
+text = "Bounds (B)"
+flat = false
+align = 0
+_sections_unfolded = [ "Custom Fonts" ]
+
+[node name="Separator2" type="ColorRect" parent="UI/StatusBar" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 178.0
+margin_right = 179.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.176471, 0.176471, 0.176471, 1 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="ShowLabels" type="CheckBox" parent="UI/StatusBar" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = 182.0
+margin_top = -12.0
+margin_right = 315.0
+margin_bottom = 12.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+pressed = true
+enabled_focus_mode = 0
+shortcut = SubResource( 4 )
+group = null
+text = "Labels (L)"
+flat = false
+align = 0
+_sections_unfolded = [ "Custom Fonts" ]
+
+[node name="Separator3" type="ColorRect" parent="UI/StatusBar" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 288.0
+margin_right = 289.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.176471, 0.176471, 0.176471, 1 )
+_sections_unfolded = [ "Margin" ]
+
+[node name="LoadCubemapButton" type="Button" parent="UI/StatusBar" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 292.0
+margin_top = -1.0
+margin_right = 388.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Load Cubemap"
+flat = true
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="FPS" type="Label" parent="UI/StatusBar" index="7"]
+
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -68.0
+margin_top = -20.0
+margin_right = -5.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+text = "FPS: 0"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 4 )
+_sections_unfolded = [ "Margin", "custom_fonts" ]
+
+[node name="TextureLoaderContainer" type="ColorRect" parent="UI" index="3"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 140.0
+margin_top = -179.0
+margin_right = 265.0
+margin_bottom = -26.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
+
+[node name="CubemapSidePaths" type="Node" parent="." index="2"]
+
+script = ExtResource( 5 )
+
+[connection signal="cubemap_side_button_clicked" from="ViewportContainer/Viewport/Scene" to="." method="_on_cubemap_side_button_clicked"]
+
+[connection signal="fov_changed" from="ViewportContainer/Viewport/Scene" to="." method="_on_fov_changed"]
+
+[connection signal="file_selected" from="UI/FileDialog" to="." method="_on_FileDialog_file_selected"]
+
+[connection signal="files_selected" from="UI/FileDialog" to="." method="_on_FileDialog_files_selected"]
+
+[connection signal="toggled" from="UI/StatusBar/ShowBounds" to="." method="_on_show_bounds_toggled"]
+
+[connection signal="toggled" from="UI/StatusBar/ShowLabels" to="." method="_on_show_labels_toggled"]
+
+[connection signal="pressed" from="UI/StatusBar/LoadCubemapButton" to="." method="_on_load_cubemap_pressed"]
+
+
