@@ -13,3 +13,4 @@ export_presets.cfg
 *.blend1
 
 /Builds
+/CubemapInspector/state

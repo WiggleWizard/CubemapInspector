@@ -22,10 +22,11 @@ Cubemap Inspector is a small application designed to be used to check cubemaps y
 ## TODO
 - [ ] Ability to load in Parabolics/Double Parabolics/Other formats.
 - [ ] Drag and drop onto EXE to view cubemap without having to use the Open dialog.
-- [ ] Save the last path the user loaded in.
+- [x] Save the last path the user loaded in.
 - [ ] Auto turn table.
 - [ ] Togglable SFX like flaring/ghosting.
 - [ ] Editable recognition of file names for mass loading of sides.
+- [ ] Texture watching, for realtime changes.
 
 ## Extra
 If you don't have any cubemaps or are not into making your own but are still curious about the software you can download some pretty cool cubemaps here: http://www.custommapmakers.org/skyboxes.php.

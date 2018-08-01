@@ -34,14 +34,7 @@ func _on_load_cubemap_pressed():
 	
 func _on_FileDialog_file_selected(path):
 	print("User selected file: " + path);
-	
-	var texture = ImageTexture.new();
-	var img = Image.new();
-	img.load(path);
-	texture.create_from_image(img, Texture.FLAG_MIRRORED_REPEAT);
-
-	$ViewportContainer/Viewport/Scene.set_cubemap_side_texture(side_selected, texture);
-
+	$ViewportContainer/Viewport/Scene.set_cubemap_side_texture(side_selected, path);
 	side_selected = "";
 		
 func _on_FileDialog_files_selected(paths):
@@ -51,10 +44,4 @@ func _on_FileDialog_files_selected(paths):
 		var cube_side = $CubemapSidePaths.side_in_path(path);
 		if cube_side:
 			print("Using " + path + " for " + cube_side.side);
-			
-			var texture = ImageTexture.new();
-			var img = Image.new();
-			img.load(path);
-			texture.create_from_image(img, Texture.FLAG_MIRRORED_REPEAT);
-		
-			$ViewportContainer/Viewport/Scene.set_cubemap_side_texture(cube_side.side, texture);
+			$ViewportContainer/Viewport/Scene.set_cubemap_side_texture(cube_side.side, path);
