@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Cubemap.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
-[ext_resource path="res://Shaders/unshaded.shader" type="Shader" id=3]
-[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_dn.tga" type="Texture" id=4]
-[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_up.tga" type="Texture" id=5]
-[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_rt.tga" type="Texture" id=6]
-[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_lf.tga" type="Texture" id=7]
-[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_ft.tga" type="Texture" id=8]
-[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_bk.tga" type="Texture" id=9]
-[ext_resource path="res://Scripts/CubemapSideButtons.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/CubemapBounds.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Shaders/unshaded.shader" type="Shader" id=4]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_dn.tga" type="Texture" id=5]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_up.tga" type="Texture" id=6]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_rt.tga" type="Texture" id=7]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_lf.tga" type="Texture" id=8]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_ft.tga" type="Texture" id=9]
+[ext_resource path="res://Textures/Cubemaps/mp_marvelous/bloody-marvelous_bk.tga" type="Texture" id=10]
+[ext_resource path="res://Scripts/CubemapSideButtons.gd" type="Script" id=11]
 
 [sub_resource type="Shader" id=1]
 
@@ -30,8 +31,8 @@ _sections_unfolded = [ "shader" ]
 [sub_resource type="ShaderMaterial" id=3]
 
 render_priority = 0
-shader = ExtResource( 3 )
-shader_param/tex = ExtResource( 4 )
+shader = ExtResource( 4 )
+shader_param/tex = ExtResource( 5 )
 _sections_unfolded = [ "Shader Param", "shader_param" ]
 
 [sub_resource type="PlaneMesh" id=4]
@@ -44,43 +45,42 @@ subdivide_depth = 0
 [sub_resource type="ShaderMaterial" id=5]
 
 render_priority = 0
-shader = ExtResource( 3 )
-shader_param/tex = ExtResource( 5 )
+shader = ExtResource( 4 )
+shader_param/tex = ExtResource( 6 )
 _sections_unfolded = [ "Shader Param", "shader", "shader_param", "shader_param/tex" ]
 
 [sub_resource type="ShaderMaterial" id=6]
 
 render_priority = 0
-shader = ExtResource( 3 )
-shader_param/tex = ExtResource( 6 )
+shader = ExtResource( 4 )
+shader_param/tex = ExtResource( 7 )
 _sections_unfolded = [ "Shader Param", "shader_param" ]
 
 [sub_resource type="ShaderMaterial" id=7]
 
 render_priority = 0
-shader = ExtResource( 3 )
-shader_param/tex = ExtResource( 7 )
+shader = ExtResource( 4 )
+shader_param/tex = ExtResource( 8 )
 _sections_unfolded = [ "Shader Param" ]
 
 [sub_resource type="ShaderMaterial" id=8]
 
 render_priority = 0
-shader = ExtResource( 3 )
-shader_param/tex = ExtResource( 8 )
+shader = ExtResource( 4 )
+shader_param/tex = ExtResource( 9 )
 _sections_unfolded = [ "Shader Param", "shader_param" ]
 
 [sub_resource type="ShaderMaterial" id=9]
 
 render_priority = 0
-shader = ExtResource( 3 )
-shader_param/tex = ExtResource( 9 )
+shader = ExtResource( 4 )
+shader_param/tex = ExtResource( 10 )
 _sections_unfolded = [ "Shader Param", "shader_param" ]
 
 [node name="Root" type="Spatial"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Script", "script" ]
-bound_scale = 0.99
 
 [node name="Bounds" type="ImmediateGeometry" parent="." index="0"]
 
@@ -93,7 +93,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
+script = ExtResource( 2 )
 _sections_unfolded = [ "Geometry", "Transform" ]
+bound_scale = 0.99
 
 [node name="Camera" type="Camera" parent="." index="1"]
 
@@ -110,7 +112,7 @@ fov = 100.0
 size = 1.0
 near = 0.05
 far = 100.0
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Script", "Transform", "script" ]
 camera_speed = 5.0
 fov_scroll_speed = 5
@@ -223,7 +225,7 @@ _sections_unfolded = [ "Geometry", "Transform" ]
 
 [node name="CubemapSideButtons" type="Spatial" parent="FakeCubemap" index="6"]
 
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Visibility" ]
 
 [connection signal="cubemap_side_button_clicked" from="Camera" to="." method="_on_cubemap_side_button_clicked"]

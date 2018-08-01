@@ -15,10 +15,7 @@ func _on_cubemap_load_pressed():
 	file_dialog.popup();
 
 func _on_show_bounds_toggled(button_pressed):
-	if button_pressed:
-		$ViewportContainer/Viewport/Scene._draw_bounds();
-	else:
-		$ViewportContainer/Viewport/Scene._clear_bounds();
+	$ViewportContainer/Viewport/Scene.show_bounds(button_pressed);
 		
 func _on_show_labels_toggled(button_pressed):
 	$ViewportContainer/Viewport/Scene.set_labels_visibility(button_pressed);
